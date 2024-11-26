@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 import 'core/core.dart';
 import 'shared/app_environment.dart';
 import 'shared/app_routes.dart';
-import 'shared/modular_app.dart';
+import 'shared/pizza_modular_app.dart';
 // import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -13,6 +14,8 @@ Future<void> main() async {
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+      
+  usePathUrlStrategy();
 
   final environment = AppEnvironment();
   AppInjector.registerSingleton<AppEnvironment>(environment);
