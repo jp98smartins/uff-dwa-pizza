@@ -1,0 +1,1 @@
+enum AppNetworkExceptionType { client, server }
