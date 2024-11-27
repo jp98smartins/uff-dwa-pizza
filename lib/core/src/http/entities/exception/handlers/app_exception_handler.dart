@@ -17,7 +17,7 @@ final class AppExceptionHandler {
         );
       }
 
-      final statusCode = error.response!.statusCode ?? 500;
+      final statusCode = error.response?.statusCode ?? -1;
 
       if (statusCode > 399 && statusCode < 500) {
         exception = AppException.business(

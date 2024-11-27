@@ -1,4 +1,5 @@
 import '../../../core/core.dart';
+import '../presenter/cubit/products_cubit.dart';
 
 final class ProductsModule implements AppModule {
   @override
@@ -10,12 +11,11 @@ final class ProductsModule implements AppModule {
     //   ),
     // );
 
-    // // Cubits
-    // AppInjector.registerFactory<ProductsCubit>(
-    //   () => ProductsCubit(
-    //     AppInjector.get<ProductsRepository>(),
-    //     AppInjector.get<CoreRepository>(),
-    //   ),
-    // );
+    // Cubits
+    AppInjector.registerFactory<ProductsCubit>(
+      () => ProductsCubit(
+        AppInjector.get<CoreRepository>(),
+      ),
+    );
   }
 }

@@ -24,6 +24,14 @@ extension StringExtensions on String {
 
     return capitalized.replaceAll('De', 'de').replaceAll('Dos', 'dos').replaceAll('Da', 'da');
   }
+
+  String sanitizeNumbers() {
+    return replaceAll(RegExp(r'\D'), '');
+  }
+
+  String sanitizeLetters() {
+    return replaceAll(RegExp(r'[^a-zA-Z]'), '');
+  }
 }
 
 extension NumExtensions on num {

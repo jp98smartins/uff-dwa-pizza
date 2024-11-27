@@ -1,21 +1,14 @@
 import '../../../core/core.dart';
+import '../presenter/cubit/splash_cubit.dart';
 
 final class SplashModule implements AppModule {
   @override
   void registerDependencies() {
-    // // Repositories
-    // AppInjector.registerFactory<SplashRepository>(
-    //   () => SplashRepositoryImpl(
-    //     AppInjector.get<HttpClient>(),
-    //   ),
-    // );
-
-    // // Cubits
-    // AppInjector.registerFactory<SplashCubit>(
-    //   () => SplashCubit(
-    //     AppInjector.get<SplashRepository>(),
-    //     AppInjector.get<CoreRepository>(),
-    //   ),
-    // );
+    // Cubits
+    AppInjector.registerFactory<SplashCubit>(
+      () => SplashCubit(
+        AppInjector.get<CoreRepository>(),
+      ),
+    );
   }
 }

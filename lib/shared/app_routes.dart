@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../app/auth/presenter/auth_page.dart';
 import '../app/auth/presenter/cubit/auth_cubit.dart';
+import '../app/products/presenter/cubit/products_cubit.dart';
+import '../app/products/presenter/products_page.dart';
+import '../app/splash/presenter/cubit/splash_cubit.dart';
+import '../app/splash/presenter/splash_page.dart';
 import '../core/core.dart';
 
 sealed class AppRoutes {
@@ -26,17 +30,18 @@ sealed class AppRoutes {
   // GoRouter Router
   static final routerConfig = GoRouter(
     navigatorKey: navigatorKey,
-    initialLocation: authPath,
+    initialLocation: splashPath,
     routes: [
       GoRoute(
-        path: authPath,
-        name: authRoute,
+        path: splashPath,
+        name: splashRoute,
         pageBuilder: (context, state) {
-          const transition = SlideUpTransition();
+          const transition = FadeOutTransition();
           return CustomTransitionPage(
             key: state.pageKey,
-            child: AuthPage(
-              authCubit: AppInjector.get<AuthCubit>(),
+            child: BlocProvider.value(
+              value: AppInjector.get<SplashCubit>(),
+              child: const SplashPage(),
             ),
             transitionsBuilder: transition.transitionBuilder,
             transitionDuration: transition.transitionDuration,
@@ -44,22 +49,40 @@ sealed class AppRoutes {
           );
         },
       ),
-      // GoRoute(
-      //   path: productsPath,
-      //   name: productsRoute,
-      //   pageBuilder: (context, state) {
-      //     const transition = SlideRightTransition();
-      //     return CustomTransitionPage(
-      //       key: state.pageKey,
-      //       child: ProductsPage(
-      //         profileCubit: AppInjector.get<ProductsCubit>(),
-      //       ),
-      //       transitionsBuilder: transition.transitionBuilder,
-      //       transitionDuration: transition.transitionDuration,
-      //       reverseTransitionDuration: transition.transitionDuration,
-      //     );
-      //   },
-      // ),
+      GoRoute(
+        path: authPath,
+        name: authRoute,
+        pageBuilder: (context, state) {
+          const transition = SlideUpTransition();
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: BlocProvider.value(
+              value: AppInjector.get<AuthCubit>(),
+              child: const AuthPage(),
+            ),
+            transitionsBuilder: transition.transitionBuilder,
+            transitionDuration: transition.transitionDuration,
+            reverseTransitionDuration: transition.transitionDuration,
+          );
+        },
+      ),
+      GoRoute(
+        path: productsPath,
+        name: productsRoute,
+        pageBuilder: (context, state) {
+          const transition = SlideRightTransition();
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: BlocProvider.value(
+              value: AppInjector.get<ProductsCubit>(),
+              child: const ProductsPage(),
+            ),
+            transitionsBuilder: transition.transitionBuilder,
+            transitionDuration: transition.transitionDuration,
+            reverseTransitionDuration: transition.transitionDuration,
+          );
+        },
+      ),
     ],
   );
 }
