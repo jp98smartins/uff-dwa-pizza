@@ -1,0 +1,18 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+    rules:
+        always_declare_return_types: true
+        always_put_required_named_parameters_first: true
+        cancel_subscriptions: true
+        close_sinks: true
+        eol_at_end_of_file: true
+        matching_super_parameters: true
+        prefer_asserts_with_message: true
+        prefer_final_locals: true
+        prefer_final_in_for_each: true
+        prefer_single_quotes: true
+        sort_pub_dependencies: true
+        use_colored_box: true
+        use_decorated_box: true
+        use_enums: true
